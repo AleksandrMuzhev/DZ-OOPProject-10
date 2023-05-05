@@ -23,21 +23,21 @@ public class Radio {
     }
 
 
-    public void setNext(int newCurrentStation) {
-        newCurrentStation = newCurrentStation + 1;
-        if (newCurrentStation > 9) {
+    public void next() {
+        int target = currentStation + 1;
+        if (target > 9) {
             currentStation = 0;
         } else {
-            currentStation = newCurrentStation;
+            currentStation = target;
         }
     }
 
-    public void setPrev(int newCurrentStation) {
-        newCurrentStation = newCurrentStation - 1;
-        if (newCurrentStation < 0) {
+    public void prev() {
+        int target = currentStation - 1;
+        if (target < 0) {
             currentStation = 9;
         } else {
-            currentStation = newCurrentStation;
+            currentStation = target;
         }
     }
 
