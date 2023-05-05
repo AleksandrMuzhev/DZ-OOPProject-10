@@ -1,9 +1,15 @@
+package org.example.javaqa10oopp.services;
+
 public class Radio {
-    public int currentStation;
-    public int currentVolume;
+    private int currentStation;
+    private int currentVolume;
 
     public int getNumberStation() {
         return currentStation;
+    }
+
+    public int getSoundVolume() {
+        return currentVolume;
     }
 
     public void setCurrentStation(int newCurrentStation) {
@@ -40,10 +46,6 @@ public class Radio {
         setCurrentStation(target);
     }
 
-
-    public int getSoundVolume() {
-        return currentVolume;
-    }
 
     public void setCurrentVolume(int newCurrentVolume) {
         if (newCurrentVolume > 100) {

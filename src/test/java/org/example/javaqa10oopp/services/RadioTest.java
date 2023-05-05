@@ -1,3 +1,5 @@
+package org.example.javaqa10oopp.services;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -100,10 +102,24 @@ public class RadioTest {
 
 
     @Test
-    public void shouldSetToLimitVolume9() {
+    public void shouldSetToHighBelowMaxLimitVolume9() {
         Radio volume = new Radio();
+        volume.setCurrentVolume(99);
 
-        volume.setCurrentVolume(101);
+        volume.setIncreaseOverMaxVolume();
+
+        int expected = 100;
+        int actual = volume.getSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetToLowAfterMinLimitVolume10() {
+        Radio volume = new Radio();
+        volume.setCurrentVolume(1);
+
+        volume.setIncreaseBelowMinVolume();
 
         int expected = 0;
         int actual = volume.getSoundVolume();
@@ -111,9 +127,8 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-
     @Test
-    public void shouldSetIncreaseOverMaxVolume10() {
+    public void shouldSetIncreaseOverMaxVolume11() {
         Radio volume = new Radio();
         volume.setCurrentVolume(100);
 
@@ -126,7 +141,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetIncreaseBelowMinVolume11() {
+    public void shouldSetIncreaseBelowMinVolume12() {
         Radio volume = new Radio();
         volume.setCurrentVolume(0);
 
