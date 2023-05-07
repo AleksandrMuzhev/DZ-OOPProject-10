@@ -5,9 +5,58 @@ import org.junit.jupiter.api.Test;
 
 public class RadioTest {
     @Test
-    public void shouldSetToOverLimitStation1() {
+    public void testNonAmountStation1() {
         Radio station = new Radio();
 
+        Assertions.assertEquals(10, station.getAmountStation());
+    }
+
+    @Test
+    public void testDefaultAmountStation2() {
+        Radio station = new Radio(10);
+
+        Assertions.assertEquals(9, station.getMaxStation());
+    }
+
+    @Test
+    public void testChangeNextOverLimitStation3() {
+        Radio station = new Radio(9, 9);
+
+        Assertions.assertEquals(9, station.getMaxStation());
+        Assertions.assertEquals(0, station.getNumberStation());
+    }
+
+
+    @Test
+    public void testChangePrevBelowLimitStation4() {
+        Radio station = new Radio(0, 0, 9);
+
+        Assertions.assertEquals(0, station.getMinStation());
+        Assertions.assertEquals(9, station.getMaxStation());
+        Assertions.assertEquals(9, station.getNumberStation());
+    }
+
+
+    @Test
+    public void testNextMediumLimitStation5() {
+        Radio station = new Radio(5, 9);
+
+        Assertions.assertEquals(9, station.getMaxStation());
+        Assertions.assertEquals(6, station.getNumberStation());
+    }
+
+    @Test
+    public void testPrevMediumLimitStation6() {
+        Radio station = new Radio(0, 4, 9);
+
+        Assertions.assertEquals(0, station.getMinStation());
+        Assertions.assertEquals(9, station.getMaxStation());
+        Assertions.assertEquals(3, station.getNumberStation());
+    }
+
+    @Test
+    public void testSetToOverLimitStation7() {
+        Radio station = new Radio();
         station.setCurrentStation(10);
 
         int expected = 0;
@@ -17,9 +66,8 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetToBelowLimitStation2() {
+    public void testSetToBelowLimitStation8() {
         Radio station = new Radio();
-
         station.setCurrentStation(-1);
 
         int expected = 0;
@@ -29,7 +77,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetToMediumLimitStation3() {
+    public void testSetToMediumLimitStation9() {
         Radio station = new Radio();
 
         station.setCurrentStation(5);
@@ -41,57 +89,8 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetToNextStationStepAfterMax4() {
+    public void shouldSetToRandomStation10() {
         Radio station = new Radio();
-
-        station.setNext(9);
-
-        int expected = 0;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSetToNextStationStepBeforeMax5() {
-        Radio station = new Radio();
-
-        station.setNext(7);
-
-        int expected = 8;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSetToPrevStationStepBeforeMin6() {
-        Radio station = new Radio();
-
-        station.setPrev(0);
-
-        int expected = 9;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSetToPrevStationStepAfterMin7() {
-        Radio station = new Radio();
-
-        station.setPrev(2);
-
-        int expected = 1;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSetToRandomStation8() {
-        Radio station = new Radio();
-
         station.setRandomStation(10);
 
         int expected = 0;
@@ -100,9 +99,8 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-
     @Test
-    public void shouldSetToHighBelowMaxLimitVolume9() {
+    public void shouldSetToHighBelowMaxLimitVolume11() {
         Radio volume = new Radio();
         volume.setCurrentVolume(99);
 
@@ -115,7 +113,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetToLowAfterMinLimitVolume10() {
+    public void shouldSetToLowAfterMinLimitVolume12() {
         Radio volume = new Radio();
         volume.setCurrentVolume(1);
 
@@ -128,7 +126,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetIncreaseOverMaxVolume11() {
+    public void shouldSetIncreaseOverMaxVolume13() {
         Radio volume = new Radio();
         volume.setCurrentVolume(100);
 
@@ -141,7 +139,7 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetIncreaseBelowMinVolume12() {
+    public void shouldSetIncreaseBelowMinVolume14() {
         Radio volume = new Radio();
         volume.setCurrentVolume(0);
 
