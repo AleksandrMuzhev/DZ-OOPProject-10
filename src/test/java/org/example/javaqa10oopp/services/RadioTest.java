@@ -1,5 +1,6 @@
 package org.example.javaqa10oopp.services;
 
+import lombok.Data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +15,7 @@ public class RadioTest {
     @Test
     public void testDefaultAmountStation2() {
         Radio station = new Radio(10);
+
 
         Assertions.assertEquals(9, station.getMaxStation());
     }
@@ -139,5 +141,18 @@ public class RadioTest {
         int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSetToAll() {
+        Radio station = new Radio(10, 0, 9, 5, 0, 100, 30);
+
+        Assertions.assertEquals(10, station.getAmountStation());
+        Assertions.assertEquals(0, station.getMinStation());
+        Assertions.assertEquals(9, station.getMaxStation());
+        Assertions.assertEquals(5, station.getCurrentStation());
+        Assertions.assertEquals(0, station.getMinVolume());
+        Assertions.assertEquals(100, station.getMaxVolume());
+        Assertions.assertEquals(30, station.getCurrentVolume());
     }
 }
