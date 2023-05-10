@@ -20,133 +20,123 @@ public class RadioTest {
 
     @Test
     public void testChangeNextOverLimitStation3() {
-        Radio station = new Radio(9, 9);
+        Radio station = new Radio(10);
+        station.setCurrentStation(9);
+        station.next();
 
-        Assertions.assertEquals(9, station.getMaxStation());
-        Assertions.assertEquals(0, station.getNumberStation());
+        Assertions.assertEquals(0, station.getCurrentStation());
     }
 
 
     @Test
-    public void testChangePrevBelowLimitStation4() {
-        Radio station = new Radio(0, 0, 9);
+    public void testChangeAmountStation4() {
+        Radio station = new Radio(0, 30);
 
         Assertions.assertEquals(0, station.getMinStation());
-        Assertions.assertEquals(9, station.getMaxStation());
-        Assertions.assertEquals(9, station.getNumberStation());
+        Assertions.assertEquals(29, station.getMaxStation());
+
+    }
+
+    @Test
+    public void testChangePrevBelowLimitStation5() {
+        Radio station = new Radio(10);
+        station.setCurrentStation(0);
+        station.prev();
+
+        Assertions.assertEquals(9, station.getCurrentStation());
     }
 
 
     @Test
-    public void testNextMediumLimitStation5() {
-        Radio station = new Radio(5, 9);
+    public void testNextMediumLimitStation6() {
+        Radio station = new Radio(10);
+        station.setCurrentStation(5);
+        station.next();
 
-        Assertions.assertEquals(9, station.getMaxStation());
-        Assertions.assertEquals(6, station.getNumberStation());
+        Assertions.assertEquals(6, station.getCurrentStation());
     }
 
     @Test
-    public void testPrevMediumLimitStation6() {
-        Radio station = new Radio(0, 4, 9);
+    public void testPrevMediumLimitStation7() {
+        Radio station = new Radio(10);
+        station.setCurrentStation(4);
+        station.prev();
 
-        Assertions.assertEquals(0, station.getMinStation());
-        Assertions.assertEquals(9, station.getMaxStation());
-        Assertions.assertEquals(3, station.getNumberStation());
+        Assertions.assertEquals(3, station.getCurrentStation());
     }
 
     @Test
-    public void testSetToOverLimitStation7() {
-        Radio station = new Radio();
+    public void testSetToOverLimitStation8() {
+        Radio station = new Radio(10);
         station.setCurrentStation(10);
 
-        int expected = 0;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, station.getCurrentStation());
     }
 
     @Test
-    public void testSetToBelowLimitStation8() {
-        Radio station = new Radio();
+    public void testSetToBelowLimitStation9() {
+        Radio station = new Radio(10);
         station.setCurrentStation(-1);
 
-        int expected = 0;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, station.getCurrentStation());
     }
 
     @Test
-    public void testSetToMediumLimitStation9() {
-        Radio station = new Radio();
-
+    public void testSetToMediumLimitStation10() {
+        Radio station = new Radio(10);
         station.setCurrentStation(5);
 
-        int expected = 5;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(5, station.getCurrentStation());
     }
 
     @Test
-    public void shouldSetToRandomStation10() {
-        Radio station = new Radio();
-        station.setRandomStation(10);
-
-        int expected = 0;
-        int actual = station.getNumberStation();
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldSetToHighBelowMaxLimitVolume11() {
+    public void shouldSetToHighBelowMaxLimitVolume12() {
         Radio volume = new Radio();
         volume.setCurrentVolume(99);
 
         volume.setIncreaseOverMaxVolume();
 
         int expected = 100;
-        int actual = volume.getSoundVolume();
+        int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldSetToLowAfterMinLimitVolume12() {
+    public void shouldSetToLowAfterMinLimitVolume13() {
         Radio volume = new Radio();
         volume.setCurrentVolume(1);
 
         volume.setIncreaseBelowMinVolume();
 
         int expected = 0;
-        int actual = volume.getSoundVolume();
+        int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldSetIncreaseOverMaxVolume13() {
+    public void shouldSetIncreaseOverMaxVolume14() {
         Radio volume = new Radio();
         volume.setCurrentVolume(100);
 
         volume.setIncreaseOverMaxVolume();
 
         int expected = 100;
-        int actual = volume.getSoundVolume();
+        int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldSetIncreaseBelowMinVolume14() {
+    public void shouldSetIncreaseBelowMinVolume15() {
         Radio volume = new Radio();
         volume.setCurrentVolume(0);
 
         volume.setIncreaseBelowMinVolume();
 
         int expected = 0;
-        int actual = volume.getSoundVolume();
+        int actual = volume.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
     }
