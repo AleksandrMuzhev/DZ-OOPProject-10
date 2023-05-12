@@ -1,5 +1,12 @@
 package org.example.javaqa10oopp.services;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@Data
+
 public class Radio {
     private int amountStation = 10;
     private int minStation = 0;
@@ -21,26 +28,6 @@ public class Radio {
     public Radio(int minStation, int maxStation) {
         this.minStation = minStation;
         this.maxStation = maxStation - 1;
-    }
-
-    public int getCurrentStation() {
-        return currentStation;
-    }
-
-    public int getAmountStation() {
-        return amountStation;
-    }
-
-    public int getMinStation() {
-        return minStation;
-    }
-
-    public int getMaxStation() {
-        return maxStation;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
     }
 
     public void setCurrentStation(int newCurrentStation) {
